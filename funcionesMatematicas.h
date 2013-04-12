@@ -2,6 +2,7 @@
 
 numComplejo suma(numComplejo, numComplejo);
 numComplejo resta(numComplejo, numComplejo);
+numComplejo multiplicacion(numComplejo, numComplejo);
 
 
 // La funcion suma dos numComplejos binomicos y devuelve un numComplejo binomico
@@ -17,6 +18,14 @@ numComplejo resta(numComplejo primerOperando, numComplejo segundoOperando){
 
             primerOperando.primerElemento -= segundoOperando.primerElemento;
             primerOperando.segundoElemento -= segundoOperando.segundoElemento;
+            return primerOperando;
+}
+
+// La funcion multiplica dos numCOmplejos polares
+numComplejo multiplicacion(numComplejo primerOperando, numComplejo segundoOperando){
+            
+            primerOperando.primerElemento *= segundoOperando.primerElemento;
+            primerOperando.segundoElemento += segundoOperando.segundoElemento;
             return primerOperando;
 }
 
