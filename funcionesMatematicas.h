@@ -3,6 +3,7 @@
 numComplejo suma(numComplejo, numComplejo);
 numComplejo resta(numComplejo, numComplejo);
 numComplejo multiplicacion(numComplejo, numComplejo);
+numComplejo divicion(numComplejo, numComplejo);
 
 
 // La funcion suma dos numComplejos binomicos y devuelve un numComplejo binomico
@@ -28,4 +29,17 @@ numComplejo multiplicacion(numComplejo primerOperando, numComplejo segundoOperan
             primerOperando.segundoElemento += segundoOperando.segundoElemento;
             return primerOperando;
 }
+
+// La funcion divide dos numComplejos polares
+numComplejo divicion(numComplejo primerOperando, numComplejo segundoOperando){
+            
+            if( segundoOperando.segundoElemento != 0){ 
+                primerOperando.primerElemento /= segundoOperando.primerElemento;
+                primerOperando.segundoElemento -= segundoOperando.segundoElemento;
+            } else
+              printf("No se puede dividir por 0, se devuelve el primer operando.\n");   //TODO ALGO MEJOR
+            
+            return primerOperando;           
+}
+
 
