@@ -16,18 +16,22 @@ numComplejo polarABinomica(numComplejo);
 
 // La funcion transforma un numComplejo de binomica a polar (debe recibir un numComplejo en binomica)
 numComplejo binomicaAPolar(numComplejo numeroBinomica){
-            numComplejo polar;
-            polar.primerElemento = sqrt(pow(numeroBinomica.primerElemento,2)+ pow(numeroBinomica.segundoElemento,2));
-            polar.segundoElemento = atan2(numeroBinomica.segundoElemento, numeroBinomica.primerElemento); // TODO CORREGIR EL ARGUMENTO
-            polar.tipo = POLAR;
+            if(numeroBinomica.tipo == BINOMICA){
+               numComplejo polar;
+               polar.primerElemento = sqrt(pow(numeroBinomica.primerElemento,2)+ pow(numeroBinomica.segundoElemento,2));
+               polar.segundoElemento = atan2(numeroBinomica.segundoElemento, numeroBinomica.primerElemento); // TODO CORREGIR EL ARGUMENTO
+               polar.tipo = POLAR;
+            }
             return polar;
 }
 
 // La funcion transforma un numComplejo de polar a binomica (debe recibir un numComplejo en polar)
 numComplejo polarABinomica(numComplejo numeroPolar){
-            numComplejo binomica;
-            binomica.primerElemento = cos(numeroPolar.segundoElemento) * numeroPolar.primerElemento;
-            binomica.segundoElemento = sin(numeroPolar.segundoElemento) * numeroPolar.primerElemento;
-            binomica.tipo = BINOMICA;
+            if(numeroPolar.tipo == POLAR){
+                numComplejo binomica;
+                binomica.primerElemento = cos(numeroPolar.segundoElemento) * numeroPolar.primerElemento;
+                binomica.segundoElemento = sin(numeroPolar.segundoElemento) * numeroPolar.primerElemento;
+                binomica.tipo = BINOMICA;
+            }
             return binomica;
 }
