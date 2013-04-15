@@ -7,6 +7,7 @@ numComplejo suma(numComplejo, numComplejo);
 numComplejo resta(numComplejo, numComplejo);
 numComplejo multiplicacion(numComplejo, numComplejo);
 numComplejo division(numComplejo, numComplejo);
+int sonCoprimos(int, int);
 
 
 // La funcion suma dos numComplejos binomicos y devuelve un numComplejo binomico
@@ -63,4 +64,13 @@ numComplejo division(numComplejo primerOperando, numComplejo segundoOperando) {
             } else {
                 printf("Ambos operandos deben estar en forma polar");
             }
+}
+
+// La funcion devuelve 1 si los numeros son coprimos, y 0 si no son coprimos (Utilizando el algoritmo de euclides),
+// la funcion solo funciona si se le pasa el primerOperador mayor al segundoOperador (ya que trabaja con el resto).
+int sonCoprimos(int primerOperando, int segundoOperando){
+    if( segundoOperando == 0)
+        return primerOperando == 1;
+    else
+        return sonCoprimos(segundoOperando, primerOperando % segundoOperando);
 }
