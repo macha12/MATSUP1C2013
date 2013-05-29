@@ -1,6 +1,6 @@
 /* Este archivo contiene todo lo referente a la funcionalidad matematica necesaria */
 
-#include "nahuel-datos.h"
+#include "tratamientoDeDatos.h"
 
 numComplejo suma(numComplejo, numComplejo);
 numComplejo resta(numComplejo, numComplejo);
@@ -14,6 +14,7 @@ float corregirArgumento(float);
 numComplejo sumaFasores(numComplejo, numComplejo);
 funcionTrigonometrica sumaSenoidal(funcionTrigonometrica , funcionTrigonometrica);
 funcionTrigonometrica convertirACoseno(funcionTrigonometrica);
+numComplejo transferencia(int, numComplejo *, int,  numComplejo *, int, numComplejo);
 
 
 
@@ -61,6 +62,7 @@ numComplejo multiplicacion(numComplejo primerOperando, numComplejo segundoOperan
             	numComplejo resultado;
                 resultado.primerElemento = primerPolar.primerElemento * segundoPolar.primerElemento;
                 resultado.segundoElemento = primerPolar.segundoElemento + segundoPolar.segundoElemento;
+                resultado.tipo = POLAR;
                 return resultado;
 }
 
@@ -202,4 +204,36 @@ funcionTrigonometrica convertirACoseno(funcionTrigonometrica trigonometrica){
           trigonometrica.tipo = COSENO;     
       }
       return  trigonometrica;
+}
+
+
+//Recibe como parametros la K constante de proporcionalidad, un vector de polos complejos, la cantidad de polos
+// un vector de ceros complejos, la cantidad de ceros, y el valor x a reemplazar en la ecuacion
+
+//ADVERTENCIA!!.. Verificiar antes de usar, si recibe en x un valor que esta en los polos, no llamarla, devolver "tiende a infinito"
+
+
+numComplejo transferencia(int proporcionalidad, numComplejo *polos, int cantPolos, numComplejo *ceros,int cantCeros, numComplejo x){
+            
+            numComplejo constante, resultado;
+            int i;
+            
+            resultado.primerElemento = 1;
+            resultado.segundoElemento = 0;
+            resultado.tipo = POLAR;
+            
+            for(i=0; i < cantCeros; i++){
+                   resultado = multiplicacion(resultado, resta(x, ceros[i]));
+            }
+            
+           for(i=0; i < cantPolos; i++){
+                   resultado = division(resultado, resta(x, polos[i]));
+            }
+
+            constante.primerElemento= proporcionalidad;
+            constante.segundoElemento= 0;
+            constante.tipo= POLAR;
+            
+            return multiplicacion(resultado, constante);
+            
 }
